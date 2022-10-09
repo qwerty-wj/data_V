@@ -1,0 +1,172 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 400,
+    "title": "Shipping Ports Around The World",
+    "data": {
+        "url": "Port_Data1.csv"
+    },
+    "params": [{
+            "name": "Vessels_Above",
+            "value": 0,
+            "bind": {
+                "input": "range",
+                "min": 0,
+                "max": 2400,
+                "step": 400,
+                "name": "Vessels Above: "
+            }
+        }],
+        "transform": [
+            {"filter": "datum.Arrivals>0"},
+            {
+                "filter": "datum.Departures>0"
+            },
+            {
+                "filter": "datum.Vessels>Vessels_Above"
+            }
+        ],
+        "encoding": {
+            "x": {
+                "field": "Arrivals",
+                "type": "quantitative",
+                "title": "Arrivals",
+                "axis": {
+                    "tickCount": 7
+                },
+                "scale": {
+                    "domain": [
+                        1,
+                        2000
+                    ]
+                }
+
+            },
+            "y": {
+                "field": "Departures",
+                "type": "quantitative",
+                "axis": {
+                    "tickCount": 6
+                },
+                "scale": {
+                    "domain": [
+                        1,
+                        2000
+                    ]
+                }
+            }
+        },
+        "layer": [
+            {
+            "mark": "square",
+            "encoding": {
+            "color": {
+                "field": "Country",
+                "type": "nominal",
+                "title":"Country or region"
+            },
+            "size": {
+                "field": "Vessels",
+                "type": "quantitative",
+                "scale": {
+                    "type": "threshold",
+                    "domain": [
+                        100,
+                        300,
+                        600,
+                        1000,
+                        1500
+                    ],
+                    "range": [
+                        10,
+                        50,
+                        150,
+                        200,
+                        300,
+                        400
+                    ]
+                },
+                "legend": {
+                    "format": ".1s"
+                }
+            },
+            "tooltip": [
+                {
+                    "field": "Country",
+                    "type": "nominal",
+                    "title":"Country or region"
+                },
+                {
+                    "field": "Vessels",
+                    "type": "quantitative",
+                    "format": ","
+                },
+                {
+                    "field": "Departures",
+                    "type": "quantitative",
+                    "format": ","
+                },
+                {
+                    "field": "Arrivals",
+                    "type": "quantitative",
+                    "format": ","
+                }
+            ]
+            }
+            },
+            {
+                "mark": {
+                    "type": "text",
+                    "align": "right",
+                    "baseline": "middle",
+                    "dx": -12,
+                    "fontSize": 8,
+                    "fontStyle": "Helvetica"
+                },
+                "encoding": {
+                    "text": {
+                        "field": "Country",
+                        "type": "nominal"
+                    },
+                    "color": {
+                        "value": "black"
+                    },
+                    "opacity": {
+                        "condition": {
+                            "test": " datum['Country'] == 'Singapore' || datum['Country'] == 'India' || datum['Country'] == 'Colombia'  ",
+                            "value": 1
+                        },
+                        "value": 0
+                    },
+                    "tooltip": [
+                        {
+                            "field": "Country",
+                            "type": "nominal",
+                            "title": "Country or region"
+                        },
+                        {
+                            "field": "Vessels",
+                            "type": "quantitative",
+                            "format": ","
+                        },
+                        {
+                            "field": "Departures",
+                            "type": "quantitative",
+                            "format": ","
+                        },
+                        {
+                            "field": "Arrivals",
+                            "type": "quantitative",
+                            "format": ","
+                        }
+                    ]
+                    }
+
+            }
+            
+
+        ]
+           
+        
+}
+                
