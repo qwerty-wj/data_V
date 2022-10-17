@@ -1,0 +1,45 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 300,
+  "height": 260,
+  "title": {
+    "text": "Agriculture Distribution",
+    "fontSize": 20
+  },
+  "data": { "url": "data_info.csv" },
+  "params": [
+    {
+      "name": "keys",
+      "select": { "type": "point", "fields": ["key"]},
+      "bind": "legend"
+    }
+  ],
+  "transform": [
+    {
+      "lookup": "Country",
+      "from": {
+        "data": { "url": "gdp_per_capita.csv" },
+        "key": "Country",
+        "fields": ["2020"]
+      }
+    },
+    {"calculate": "datum.Agriculture * 50","as": "Agriculture"},
+    { "fold": ["Arable", "Crops", "Agriculture"] }
+  ],
+  "mark": { "type": "bar", "width":35,"tooltip": true },
+  "encoding": {
+    "x": { "field": "Region" },
+    "y": { "field": "value", "aggregate": "sum"},
+    "color": { "field": "key" ,"title":null,
+  "scale": {
+    "range": [
+      "#2cc75a",      
+      "#ff7f00",
+      "#377eb8"
+    ]}},
+    "opacity": {
+      "condition": { "param": "keys", "value": 1 },
+      "value": 0.2
+    }
+  }
+}

@@ -1,0 +1,11 @@
+vegaEmbed("#chart1", "bar.json");
+vegaEmbed("#chart2", "bar2.json");
+vegaEmbed("#chart3", "scatter.json");
+vegaEmbed("#chart4", "area.json");
+vegaEmbed("#chart5", "map.json");
+vegaEmbed("#pie1", "pie1.json");
+vegaEmbed("#pie2", "pie2.json");
+// vegaEmbed("#chart2", scatter);
+// vegaEmbed("#chart3", bar);
+// vegaEmbed("#chart4", circle);
+// vegaEmbed("#chart5", area);

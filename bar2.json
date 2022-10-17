@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 300,
+  "height": 300,
+  "title": {
+    "text": "Birthrate & Deathrate",
+    "fontSize": 18
+  },
+  "data": { "url": "data_info.csv" },
+
+  "transform": [
+    {
+      "lookup": "Country",
+      "from": {
+        "data": { "url": "gdp_per_capita.csv" },
+        "key": "Country",
+        "fields": ["2020"]
+      }
+    },
+    { "fold": ["Birthrate", "Deathrate"] },
+    {
+      "calculate": "datum.key == 'Birthrate' ? 'Birthrate' : 'Deathrate'",
+      "as": "type"
+    },
+    {
+      "calculate": "datum.key == 'Birthrate' ? -datum.value : datum.value",
+      "as": "rate"
+    }
+  ],
+  "mark": { "type": "bar", "tooltip": true },
+  "encoding": {
+    "y": {
+      "field": "Region",
+      "axis": {
+        "zindex":1,
+        "offset":-210,
+        "tickColor": "white",
+        "labelColor":"white",
+        "labelFontSize":12
+      },
+      "title": null,
+      "sort": "descending"
+    },
+    "x": {
+      "aggregate": "mean",
+      "field": "rate",
+      "title": "rate",
+      "axis": { "format": "s" }
+    },
+    "color": {
+      "field": "type",
+      "scale": { "range": ["#377eb8", "#ff7f00"] },
+      "legend": { "orient": "top", "title": null }
+    }
+
+  },
+  "config": {
+    "view": { "stroke": null },
+    "axis": { "grid": false }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 300,
+  "height": 280,
+  "title": {
+    "text": "Relationship of Literacy with GDP",
+    "fontSize": 18
+  },
+
+  "data": { "url": "data_info.csv" },
+
+  "params": [
+    {
+      "name": "keys",
+      "select": { "type": "point", "fields": ["Region"] },
+      "bind": "legend"
+    },
+    {
+      "name": "region",
+      "select": { "type": "point", "fields": ["Region"] },
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Africa",
+          "Asia",
+          "Europe",
+          "NorthAmerica",
+          "Oceania",
+          "SouthAmerica"
+        ],
+        "labels": [
+        "Show all",
+        "Africa",
+        "Asia",
+        "Europe",
+        "NorthAmerica",
+        "Oceania",
+        "SouthAmerica"
+        ],
+        "name":"Contient Selection: "
+      }
+    }
+  ],
+
+  "transform": [
+    {
+      "lookup": "Country",
+      "from": {
+        "data": { "url": "gdp_per_capita.csv" },
+        "key": "Country",
+        "fields": ["2020"]
+      }
+    }
+  ],
+  "mark": { "type": "circle", "tooltip": true },
+  "encoding": {
+    "x": {
+      "aggregate": "sum",
+      "field": "Literacy",
+      "title": "Literacy"
+    },
+    "y": {
+      "aggregate": "sum",
+      "field": "2020",
+      "title": "GDP in 2020",
+      "format": ".2f"
+    },
+    "detail": { "field": "Country" },
+    "color": {
+      "condition": {
+        "param": "region",
+        "field": "Region",
+        "type": "nominal",
+        "scale":{"range": [
+          "#2cc75a",
+          "#984ea3",
+          "#ff7f00",
+          "#a6cee3",
+          "#377eb8",
+          "#a65628"
+        ]},
+        "legend": {
+          "title": null
+        }
+      },
+      "value": "lightgray"
+    },
+    "opacity": {
+      "condition": { "param": "keys", "value": 1 },
+      "value": 0
+    }
+  }
+}

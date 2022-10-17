@@ -1,0 +1,61 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A simple radial chart with embedded data.",
+    "width": 300,
+    "height": 160,
+    "data": { "url": "data_info.csv" },
+    "title":{
+      "text": "Industry",
+      "fontSize": 18
+    },
+    "transform": [
+      { "filter": "datum.Service!=null" },
+      {
+        "aggregate": [
+          {
+            "op": "sum",
+            "field": "Industry",
+            "as": "Industry"
+          }
+        ],
+        "groupby": ["Region"]
+      }
+    ],
+    "layer": [
+      {
+        "mark": { "type": "arc", "innerRadius": 25, "stroke": "#fff" }
+      },
+      {
+        "mark": { "type": "text", "radiusOffset": 10 ,"tooltip":true},
+        "encoding": {
+          "text": {
+            "field": "Region",
+            "type": "nominal"
+          }
+        }
+      }
+    ],
+    "encoding": {
+      "theta": {
+        "field": "Industry",
+        "type": "quantitative",
+        "stack": true
+      },
+      "radius": {
+        "field": "Industry",
+        "scale": { "type": "sqrt", "zero": true, "rangeMin": 20 }
+      },
+      "color": { "field": "Region", "type": "nominal", "legend": null,
+    "scale": {
+      "range": [
+        "#2cc75a",
+        "#984ea3",
+        "#ff7f00",
+        "#a6cee3",
+        "#377eb8",
+        "#a65628"
+      ]
+    } }
+    }
+  }
+  

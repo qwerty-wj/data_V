@@ -1,0 +1,189 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "data": { "url": "gdp_per_capita.csv" },
+  "transform": [
+    {
+      "lookup": "Country",
+      "from": {
+        "data": { "url": "data_info.csv" },
+        "key": "Country",
+        "fields": ["Region"]
+      }
+    },
+
+    {
+      "fold": [
+        "1960",
+        "1961",
+        "1962",
+        "1963",
+        "1964",
+        "1965",
+        "1966",
+        "1967",
+        "1968",
+        "1969",
+        "1970",
+        "1971",
+        "1972",
+        "1973",
+        "1974",
+        "1975",
+        "1976",
+        "1977",
+        "1978",
+        "1979",
+        "1980",
+        "1981",
+        "1982",
+        "1983",
+        "1984",
+        "1985",
+        "1986",
+        "1987",
+        "1988",
+        "1989",
+        "1990",
+        "1991",
+        "1992",
+        "1993",
+        "1994",
+        "1995",
+        "1996",
+        "1997",
+        "1998",
+        "1999",
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020"
+      ]
+    },
+    { "filter": { "field": "value", "valid": true } },
+    { "filter": "datum.Region != null" },
+    { "calculate": "+datum.key", "as": "year" }
+  ],
+  "vconcat": [
+    {
+      "title": {
+        "text": "GDP development in past 40 years",
+        "fontSize": 20
+      },
+      "width": 730,
+      "height": 500,
+      "params": [
+        {
+          "name": "keys",
+          "select": { "type": "point", "fields": ["Region"] },
+          "bind": "legend"
+        }
+      ],
+
+      "mark": { "type": "area", "tooltip": true },
+
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": { "domain": { "param": "brush" } },
+          "axis": {
+          "format":".0f"
+          }
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "value",
+          "axis":{"format": ".2s"},
+          "title":"Sum of GDP per captia"
+        },
+        "color": {
+          "field": "Region",
+          "type": "nominal",
+          "scale": {
+            "range": [
+              "#2cc75a",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          },
+          "legend": {
+            "title": null
+          }
+        },
+        "opacity": {
+          "condition": { "param": "keys", "value": 1 },
+          "value": 0.2
+        }
+      }
+    },
+    {
+      "width": 730,
+      "height": 60,
+      "mark": {"type":"area",
+          "line": {
+            "color": "darkblue"
+          },
+          "color": {
+            "x1": 1,
+            "y1": 1,
+            "x2": 1,
+            "y2": 0,
+            "gradient": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "lightblue"
+              },
+              {
+                "offset": 1,
+                "color": "darkblue"
+              }
+            ]
+          }
+        },
+      "params": [
+        {
+          "name": "brush",
+          "select": { "type": "interval", "encodings": ["x"] }
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "axis": {
+            "format":".0f"
+            }
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "value",
+          "type": "quantitative",
+          "axis": { "tickCount": 3, "grid": false,"format":".2s" },
+          "title":"Sum of GDP"
+        }
+      }
+    }
+  ]
+}

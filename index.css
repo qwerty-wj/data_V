@@ -1,0 +1,95 @@
+#title_box{
+    border: 5px solid black;
+    height: 280px;
+    width: 1000px;
+    margin: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+}
+.chart_box {
+    border: 5px solid black;
+    height:auto;
+    width: 1000px;
+    margin: auto;
+    margin-top: 30px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#title{
+    text-align: center;
+    font-size: 40px;
+}
+
+.body_text{
+    font-size: 25px;
+}
+.subtitle{
+    font-size:30px;
+    font-weight: bold;
+}
+
+#chart5{
+    margin-left: 90px;
+}
+
+
+.text_box{
+    display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 10px;
+        grid-auto-rows: 100px;
+        grid-template-areas:
+            "a a a a b b b b"
+            "a a a a b b b b"
+            "c c c c d d d d"
+            "c c c c d d d d";
+}
+.text_left{
+    grid-area:a;
+    justify-self: start;
+    margin-left: 60px;
+}
+.text_right {
+    margin-left: 50px;
+    grid-area: b;
+    justify-self: start;
+}
+#text_m1{
+    margin-top: -20px;
+    margin-bottom: 0px;
+}
+#text_m2{
+    margin-left: 0px;
+}
+#pie1{
+    grid-area:a;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+#pie2{
+    grid-area: c;
+        margin-left: 50px;
+        margin-top: 0px;
+}
+
+#chart1 {
+    grid-area:b;
+    margin-top: 20px;
+}
+#chart2{
+    grid-area:a;
+    margin-top: 20px;
+    margin-left: 60px;
+}
+#chart3{
+    grid-area: b;
+    margin-top: 20px;
+}
+#chart4{
+    margin-left: 80px;
+}
+.mid_text{
+    text-align: center;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=false"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <title></title>
+
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+      <div id="title_box"><h1 id="title">Worldwide GDP anaylsis</h1>
+        <p class="body_text">The visulisations show <b>world GDP data</b> in whole world.  
+          <br>The data is anaylsis base on <b>Agriculture, Industry, Literacy,
+          <br>Population</b>, and in summary the data show the <b>GDP per capita</b> 
+          <br>through 40 years from <b>1960 to 2020.</b></p>
+        </div> 
+      
+      
+        <div class="chart_box" id="map_box">
+        <div class="mid_text">
+        <p class="subtitle">GDP per capita in 2020</p>
+        <p class="body_text" id="text_m1">
+          <br>The following map grah shows the worldwide GDP per capita
+          <br><b>The United States, Australia</b> and some <b>Europe countries</b>
+          <br>got highest GDP per capita <b>over 45000</b> in 2020. <b>South 
+          <br>America countries, China and Russia</b> stay on a midlevel.</p>
+        </div>
+        <div id="chart5"></div>
+      </div>             
+
+
+      <div class="chart_box" >
+
+        <div class ="text_box">
+            <div class="text_left">
+              <p class="subtitle">Agriculture</p>
+              <p class="body_text">
+              Africa and Asia got higher development than Europe
+              and North and South America, the <b>arable
+              percentages</b> are almost 
+              <br>same in different region. The agriculture in <b>Africa and Asia</b>
+              <br> region contribute to GDP stay
+              <br> in a midlevel.</p>
+            
+            </div>
+          <div id="chart1"></div>
+         
+        </div>
+      
+      </div>
+
+      <div class="chart_box">
+      
+        <div class="text_box">
+          <div class="text_right">
+            <p class="subtitle">Industry</p>
+            <p class="body_text">
+            The development in industry 
+            <br>show a <b>relative balance</b> with 
+            <br>service in different continent.
+            <br><b>Asia and Africa</b> have high 
+            <br>leve industry development. 
+            <br>However the <b>service provide</b>
+            <br>are <b>same</b> compare with other 
+            <br>two high industry contients.</p>
+          </div>
+          <div id="pie1"></div>
+          <div id="pie2"></div>
+      
+        </div>
+      
+      </div>
+
+      <div class="chart_box">
+        <div class="text_box">
+          <div class="text_left">
+            <p class="subtitle">Literacy</p>
+            <p class="body_text">
+            Obviously, the region with <b>high
+            <br>level Literacy</b> get corresponding
+            <br><b>high GDP per capita.</b> The GDP
+            <br>average in Africa is lower than 
+            <br>Europe and Asia. The Literacy 
+            <br>data shows that education is 
+            <br>significant for GDP development
+            <br>in different region.</p>
+          </div>
+          <div id="chart3"></div>
+      
+        </div>
+      </div>
+
+
+
+      <div class="chart_box">
+        <div class="text_box">
+          <div class="text_right">
+            <p class="subtitle">Population</p>
+            <p class="body_text">
+            Most of regions have a <b>postive 
+            <br>growth rate</b> in population. Only
+            <br>Europe got a negative growth
+            <br>rate. However, the <b>GDP per captia</b>
+            <br>in Europe is <b>higher than Asia and
+            <br>Africa.</b> The lower growth rate of
+            <br>population also can contribute to
+            <br>a high GDP per captia level.
+            </p>
+          </div>
+            <div id="chart2"></div>
+        </div>
+      </div>
+        
+
+      
+      <div class="chart_box">
+        <div class="mid_text">
+            <p class="subtitle">GDP per capita development</p>
+            <p class="body_text" id="text_m2">
+            The GPD per captia development growth are <b>quite fast</b> in
+            <br><b>Africa, Asia and Europe</b> from <b>1960 to 2020.</b> The total 
+            <br>GDP per captia in North and South America show relative
+            <br><b>low development rate</b> of GDP per captia.
+            </p>
+         </div>
+          <div id="chart4"></div>
+        </div>
+      </div>
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
